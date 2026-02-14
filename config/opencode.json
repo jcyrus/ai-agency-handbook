@@ -1,59 +1,87 @@
 {
-  "$schema": "https://opencode.ai/schema/config.json",
+  "$schema": "https://opencode.ai/config.json",
 
   "_comment": [
     "AI Agency Handbook — OpenCode Configuration Template",
-    "This config enforces Human-in-the-Loop control.",
-    "Authenticate via: opencode /connect (GitHub Copilot)",
-    "Kill switch: Ctrl+C in terminal to stop any agent loop."
+    "This is a TEMPLATE. Copy to your project root as opencode.json.",
+    "Pair with oh-my-opencode.json for agent orchestration.",
+    "Auth: run 'opencode auth login' then select your provider.",
+    "Kill switch: Ctrl+C in terminal to stop any agent loop.",
+    "",
+    "Provider priority: Native API > GitHub Copilot > OpenCode Zen",
+    "  - Native (anthropic/, google/): Direct API, best quality",
+    "  - Copilot (github-copilot/): Flat-rate fallback via subscription",
+    "  - Ollama: Free local models for offline/air-gapped work"
   ],
 
-  "provider": "copilot",
-  "model": "claude-sonnet",
+  "plugin": ["oh-my-opencode@latest", "opencode-antigravity-auth@1.5.1"],
 
-  "agent": {
-    "max_steps": 10,
-    "auto_fix": false,
-    "auto_compact": true,
-    "compact_threshold_tokens": 80000
-  },
-
-  "safety": {
-    "require_approval_for": ["file_delete", "file_rename", "command_execute"],
-    "blocked_commands": ["rm -rf", "DROP TABLE", "sudo"],
-    "allowed_directories": ["src/", "tests/", "docs/"]
-  },
-
-  "providers": {
-    "copilot": {
-      "_comment": "Primary Engine. Uses your existing GitHub Copilot subscription. Run 'opencode /connect' to authenticate.",
-      "models": ["claude-sonnet", "gpt-53", "gemini-pro"]
-    },
+  "provider": {
     "anthropic": {
-      "_comment": "Optional. Fallback for direct API access if Copilot is unavailable.",
-      "api_key_env": "ANTHROPIC_API_KEY",
-      "models": ["claude-sonnet-4-20250514"]
+      "name": "Anthropic",
+      "_comment": "The Architect (Opus) + The Intern (Haiku) + Atlas (Sonnet)",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "Claude Opus 4.6 (The Architect)",
+          "limit": { "context": 200000, "output": 64000 },
+          "modalities": {
+            "input": ["text", "image", "pdf"],
+            "output": ["text"]
+          },
+          "variants": {
+            "low": { "thinkingConfig": { "thinkingBudget": 8192 } },
+            "max": { "thinkingConfig": { "thinkingBudget": 32768 } }
+          }
+        },
+        "claude-sonnet-4-5": {
+          "name": "Claude Sonnet 4.5 (Atlas / General)",
+          "limit": { "context": 200000, "output": 64000 },
+          "modalities": {
+            "input": ["text", "image", "pdf"],
+            "output": ["text"]
+          }
+        },
+        "claude-haiku-4-5": {
+          "name": "Claude Haiku 4.5 (The Intern)",
+          "limit": { "context": 200000, "output": 64000 },
+          "modalities": {
+            "input": ["text", "image", "pdf"],
+            "output": ["text"]
+          }
+        }
+      }
     },
-    "openai": {
-      "_comment": "Optional. Fallback for direct API access.",
-      "api_key_env": "OPENAI_API_KEY",
-      "models": ["gpt-4o"]
-    },
-    "ollama": {
-      "_comment": "Local models. Zero API cost. See config/ollama_modelfile.",
-      "base_url": "http://localhost:11434",
-      "models": ["qwen2.5-coder:14b"]
+    "google": {
+      "name": "Google",
+      "_comment": "The Librarian (Pro, 2M context) + The Visionary (Flash)",
+      "models": {
+        "gemini-3-pro": {
+          "name": "Gemini 3 Pro (The Librarian)",
+          "limit": { "context": 2097152, "output": 65535 },
+          "modalities": {
+            "input": ["text", "image", "pdf"],
+            "output": ["text"]
+          },
+          "variants": {
+            "low": { "thinkingLevel": "low" },
+            "high": { "thinkingLevel": "high" }
+          }
+        },
+        "gemini-3-flash": {
+          "name": "Gemini 3 Flash (The Visionary)",
+          "limit": { "context": 1048576, "output": 65536 },
+          "modalities": {
+            "input": ["text", "image", "pdf"],
+            "output": ["text"]
+          },
+          "variants": {
+            "minimal": { "thinkingLevel": "minimal" },
+            "low": { "thinkingLevel": "low" },
+            "medium": { "thinkingLevel": "medium" },
+            "high": { "thinkingLevel": "high" }
+          }
+        }
+      }
     }
-  },
-
-  "ignore_patterns": [
-    ".env",
-    ".env.*",
-    "*.pem",
-    "*.key",
-    "node_modules/",
-    ".git/",
-    "compliance-docs/",
-    "*.secret"
-  ]
+  }
 }

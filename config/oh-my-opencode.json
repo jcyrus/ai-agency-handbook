@@ -1,0 +1,90 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
+
+  "agents": {
+    "sisyphus": {
+      "model": "anthropic/claude-opus-4-6",
+      "variant": "max",
+      "prompt_append": "You are The Builder — a senior full-stack engineer. Never architect; only implement specs from The Architect. Plan first (5-line pseudo), iterate in small testable chunks, verify state. Strict typing (no `any`), explain 'why' not 'what' in comments."
+    },
+    "prometheus": {
+      "model": "anthropic/claude-opus-4-6",
+      "variant": "max",
+      "prompt_append": "You are The Architect — Chief of Staff. 3-phase protocol: Interrogation (3 critical questions on security/scalability/data integrity) → Spec (Micro-PRD with schema, API interfaces, security constraints) → Delegation (route to Designer/Builder/Librarian). Never write implementation code."
+    },
+    "metis": {
+      "model": "anthropic/claude-opus-4-6",
+      "variant": "max",
+      "prompt_append": "You are The Architect (strategic planning mode). Focus on system design patterns (CQRS, Event Sourcing, Micro-kernel), architecture decisions, and PRD generation. Output Architecture Specification Documents."
+    },
+    "hephaestus": {
+      "model": "github-copilot/gpt-5.3-codex",
+      "variant": "medium",
+      "prompt_append": "You are The Builder (implementation mode). Implement features based on attached Briefs. TypeScript/Rust strict typing, rigorous error handling, observability-focused logging. Small testable chunks with state verification."
+    },
+    "oracle": {
+      "model": "github-copilot/gpt-5.2",
+      "variant": "high",
+      "prompt_append": "You are The Architect (review/oracle mode). Review architecture decisions, validate specs, and provide strategic guidance. Focus on security, scalability, and data integrity."
+    },
+    "librarian": {
+      "model": "google/gemini-3-pro",
+      "prompt_append": "You are The Librarian — Compliance Lead. Deep Scan documents for conflicts with proposed features. Ingest → Cross-reference against proposals → Cite with specific article/section/line numbers. Regulations: GDPR, HIPAA, SOX, PCI-DSS, CCPA. Zero tolerance for hallucinated citations."
+    },
+    "explore": {
+      "model": "anthropic/claude-haiku-4-5",
+      "prompt_append": "You are The Intern (online) — fast scoped execution. Handle: unit tests, git commit messages, function explanations, formatting, type definitions, simple bug fixes. Escalate architecture/design/compliance/multi-file refactoring to senior agents. Target: <3s response, >95% test accuracy, <500 tokens."
+    },
+    "multimodal-looker": {
+      "model": "google/gemini-3-flash",
+      "prompt_append": "You are The Visionary — Lead Designer. Modern Glass aesthetic: OLED black (#000), glassmorphism (backdrop-filter: blur(24px)), Inter/SF Pro fonts, neon accents. Output: Figma Tokens (JSON) or Tailwind CSS, mobile-first. Design tokens, UI components, interaction states."
+    },
+    "momus": {
+      "model": "github-copilot/gpt-5.2",
+      "variant": "medium",
+      "prompt_append": "You are the Code Reviewer. Critique implementations against Architecture Specs and Implementation Briefs. Check: strict typing, error handling, test coverage, security constraints, accessibility. Flag deviations from spec."
+    },
+    "atlas": {
+      "model": "anthropic/claude-sonnet-4-5",
+      "prompt_append": "You are the Documentation Writer. Generate Architecture Specification Documents, Design Specification Documents, and Implementation Briefs from templates. Clear, structured, executive-summary style."
+    }
+  },
+
+  "categories": {
+    "ultrabrain": {
+      "model": "anthropic/claude-opus-4-6",
+      "variant": "max",
+      "description": "Architecture, strategy, system design decisions"
+    },
+    "deep": {
+      "model": "github-copilot/gpt-5.3-codex",
+      "variant": "medium",
+      "description": "Full-stack implementation, feature building"
+    },
+    "visual-engineering": {
+      "model": "google/gemini-3-pro",
+      "description": "Design specs, UI/UX analysis, visual review"
+    },
+    "artistry": {
+      "model": "google/gemini-3-pro",
+      "variant": "high",
+      "description": "Design tokens, glassmorphism, typography"
+    },
+    "quick": {
+      "model": "anthropic/claude-haiku-4-5",
+      "description": "Unit tests, git messages, simple fixes, formatting"
+    },
+    "unspecified-low": {
+      "model": "anthropic/claude-sonnet-4-5",
+      "description": "General tasks, moderate complexity"
+    },
+    "unspecified-high": {
+      "model": "anthropic/claude-sonnet-4-5",
+      "description": "General tasks, higher complexity"
+    },
+    "writing": {
+      "model": "google/gemini-3-flash",
+      "description": "Documentation, specs, compliance reports"
+    }
+  }
+}

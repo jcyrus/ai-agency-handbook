@@ -116,17 +116,33 @@ Follow the browser-based OAuth flow. Once connected, OpenCode routes requests th
 > export OPENAI_API_KEY="sk-..."
 > ```
 
-#### 3. Add the Configuration File
+#### 3. Install oh-my-opencode
 
-Copy the provided [`config/opencode.json`](config/opencode.json) into your project root:
+oh-my-opencode is a plugin that provides multi-model agent orchestration, automatic model routing, and built-in tools.
+
+```bash
+bunx oh-my-opencode install
+```
+
+During interactive setup, select your providers (Claude, GitHub Copilot, Gemini, etc.). This writes your global config to `~/.config/opencode/`.
+
+#### 4. Add the Configuration Files
+
+Copy the provided configs into your project root:
 
 ```bash
 cp path/to/ai-agency-handbook/config/opencode.json ./opencode.json
+cp path/to/ai-agency-handbook/config/oh-my-opencode.json ./oh-my-opencode.json
 ```
+
+| File                                                       | Purpose                                                 |
+| ---------------------------------------------------------- | ------------------------------------------------------- |
+| [`config/opencode.json`](config/opencode.json)             | Plugin registration, provider definitions, model limits |
+| [`config/oh-my-opencode.json`](config/oh-my-opencode.json) | Agent-to-model mapping, categories, prompt overrides    |
 
 See the [config file documentation](#configuration-reference) below for details.
 
-#### 4. Run OpenCode
+#### 5. Run OpenCode
 
 ```bash
 # Start interactive session
@@ -340,14 +356,31 @@ Low                    Medium                    High
 
 ### `opencode.json`
 
-See [`config/opencode.json`](config/opencode.json) for the template configuration. Key settings:
+See [`config/opencode.json`](config/opencode.json) for the template configuration.
 
-| Setting     | Default | Description                                              |
-| ----------- | ------- | -------------------------------------------------------- |
-| `max_steps` | `10`    | Maximum agent loop iterations before forced stop         |
-| `auto_fix`  | `false` | If `true`, agent auto-applies fixes without asking       |
-| `provider`  | varies  | AI provider (`copilot`, `anthropic`, `openai`, `ollama`) |
-| `model`     | varies  | Model identifier for the provider                        |
+This file registers plugins and defines provider model configurations:
+
+| Setting    | Description                                                     |
+| ---------- | --------------------------------------------------------------- |
+| `plugin`   | oh-my-opencode + auth plugins                                   |
+| `provider` | Model definitions with context limits, modalities, and variants |
+
+### `oh-my-opencode.json`
+
+See [`config/oh-my-opencode.json`](config/oh-my-opencode.json) for the agent orchestration config.
+
+This file maps oh-my-opencode's built-in agents to specific models and injects role-specific prompts:
+
+| Agent               | Mapped Role       | Model                          |
+| ------------------- | ----------------- | ------------------------------ |
+| `prometheus`        | The Architect     | `anthropic/claude-opus-4-6`    |
+| `sisyphus`          | The Builder       | `anthropic/claude-opus-4-6`    |
+| `hephaestus`        | The Builder (alt) | `github-copilot/gpt-5.3-codex` |
+| `librarian`         | The Librarian     | `google/gemini-3-pro`          |
+| `explore`           | The Intern        | `anthropic/claude-haiku-4-5`   |
+| `multimodal-looker` | The Visionary     | `google/gemini-3-flash`        |
+| `momus`             | Code Reviewer     | `github-copilot/gpt-5.2`       |
+| `atlas`             | Docs Writer       | `anthropic/claude-sonnet-4-5`  |
 
 ---
 
@@ -380,7 +413,8 @@ AUTOMATED TEAM (high-speed, scoped tasks)
 - [Design DNA Prompt](prompts/02_design_dna.md) — Designer agent configuration
 - [Compliance Researcher Prompt](prompts/03_compliance_researcher.md) — Librarian agent configuration
 - [Intern Prompt](prompts/04_intern_haiku.md) — Intern agent configuration
-- [OpenCode Config](config/opencode.json) — Automated team configuration
+- [OpenCode Config](config/opencode.json) — Provider & plugin configuration
+- [oh-my-opencode Config](config/oh-my-opencode.json) — Agent orchestration mapping
 - [Contributing Guide](CONTRIBUTING.md) — How to add new agents and workflows
 
 ---
