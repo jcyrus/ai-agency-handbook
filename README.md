@@ -6,13 +6,14 @@ Instead of treating AI as a generic chat window, this playbook treats models as 
 
 ## The 2026 "Staff" Roster
 
-| Role               | Internal Title  | Recommended Model   | Best Used For                                         |
-| :----------------- | :-------------- | :------------------ | :---------------------------------------------------- |
-| **Chief of Staff** | `The Architect` | **Claude Opus 4.6** | Strategy, PRDs, System Design, "Adaptive Thinking"    |
-| **Lead Designer**  | `The Visionary` | **Moonchild AI**    | High-Fidelity UI, Glassmorphism, Figma Tokens         |
-| **Senior Eng**     | `The Builder`   | **GPT-5.3 Codex**   | Terminal execution, Refactoring, CI/CD                |
-| **Researcher**     | `The Librarian` | **Gemini 3 Pro**    | 2M+ Token Context, Legal Compliance, Log Analysis     |
-| **Intern**         | `The Runner`    | **Qwen 2.5 (14B)**  | Local (Offline) Unit tests, git messages, small fixes |
+| Role                | Internal Title  | Recommended Model   | Best Used For                                         |
+| :------------------ | :-------------- | :------------------ | :---------------------------------------------------- |
+| **Chief of Staff**  | `The Architect` | **Claude Opus 4.6** | Strategy, PRDs, System Design, "Adaptive Thinking"    |
+| **Lead Designer**   | `The Visionary` | **Moonchild AI**    | High-Fidelity UI, Glassmorphism, Figma Tokens         |
+| **Senior Eng**      | `The Builder`   | **GPT-5.3 Codex**   | Terminal execution, Refactoring, CI/CD                |
+| **Researcher**      | `The Librarian` | **Gemini 3 Pro**    | 2M+ Token Context, Legal Compliance, Log Analysis     |
+| **Intern(Offline)** | `The Runner`    | **Qwen 2.5 (14B)**  | Local (Offline) Unit tests, git messages, small fixes |
+| **Intern(Online)**  | `The Runner`    | **Claude Haiku**    | High-speed tasks via Copilot/API                      |
 
 ## How to Use This Repo
 
