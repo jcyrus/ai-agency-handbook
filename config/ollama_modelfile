@@ -1,0 +1,21 @@
+# Optimization for Apple Silicon (16GB/32GB RAM)
+# Base Model: Qwen 2.5 (14B) - Best balance of speed/intelligence for coding.
+
+FROM qwen2.5-coder:14b
+
+# Temperature: Ultra-low for precision coding (no creative writing)
+PARAMETER temperature 0.1
+
+# Context Window: 32k is the sweet spot for M1 performance.
+# Increase to 128k only if you have 64GB+ RAM.
+PARAMETER num_ctx 32768
+
+# System Prompt
+SYSTEM """
+You are a local coding assistant living in the terminal.
+Your job is to execute small, defined tasks:
+1. Write Unit Tests.
+2. Generate Git Commit Messages.
+3. Explain simple functions.
+Do not architect solutions. Do not plan. Just execute.
+"""

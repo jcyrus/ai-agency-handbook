@@ -1,0 +1,59 @@
+{
+  "$schema": "https://opencode.ai/schema/config.json",
+
+  "_comment": [
+    "AI Agency Handbook — OpenCode Configuration Template",
+    "This config enforces Human-in-the-Loop control.",
+    "Authenticate via: opencode /connect (GitHub Copilot)",
+    "Kill switch: Ctrl+C in terminal to stop any agent loop."
+  ],
+
+  "provider": "copilot",
+  "model": "claude-sonnet",
+
+  "agent": {
+    "max_steps": 10,
+    "auto_fix": false,
+    "auto_compact": true,
+    "compact_threshold_tokens": 80000
+  },
+
+  "safety": {
+    "require_approval_for": ["file_delete", "file_rename", "command_execute"],
+    "blocked_commands": ["rm -rf", "DROP TABLE", "sudo"],
+    "allowed_directories": ["src/", "tests/", "docs/"]
+  },
+
+  "providers": {
+    "copilot": {
+      "_comment": "Primary Engine. Uses your existing GitHub Copilot subscription. Run 'opencode /connect' to authenticate.",
+      "models": ["claude-sonnet", "gpt-53", "gemini-pro"]
+    },
+    "anthropic": {
+      "_comment": "Optional. Fallback for direct API access if Copilot is unavailable.",
+      "api_key_env": "ANTHROPIC_API_KEY",
+      "models": ["claude-sonnet-4-20250514"]
+    },
+    "openai": {
+      "_comment": "Optional. Fallback for direct API access.",
+      "api_key_env": "OPENAI_API_KEY",
+      "models": ["gpt-4o"]
+    },
+    "ollama": {
+      "_comment": "Local models. Zero API cost. See config/ollama_modelfile.",
+      "base_url": "http://localhost:11434",
+      "models": ["qwen2.5-coder:14b"]
+    }
+  },
+
+  "ignore_patterns": [
+    ".env",
+    ".env.*",
+    "*.pem",
+    "*.key",
+    "node_modules/",
+    ".git/",
+    "compliance-docs/",
+    "*.secret"
+  ]
+}
