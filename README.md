@@ -1,69 +1,63 @@
-# The Fractional CTO's AI Playbook 🚀
+# AI Agency Handbook
 
-This repository documents a role-based AI workforce architecture designed for high-output engineering teams.
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+[![Deploy to GitBook](https://img.shields.io/badge/Deploy-GitBook-3884FF?logo=gitbook&logoColor=white)](https://www.gitbook.com/)
 
-Instead of treating AI as a generic chat window, this playbook treats models as specialized employees with distinct roles, permissions, and hand-off protocols. This setup is optimized for **Fractional CTOs** or **Senior Engineers** managing multiple projects (SaaS, Mobile, Open Source) simultaneously.
+The AI Agency Handbook is a role-based operating manual for running AI agents like a coordinated team instead of a generic chat surface. It documents the why, the handoff model, and the runnable setup needed to install agents, standardize outputs, and publish the handbook in GitBook.
 
-## The 2026 "Staff" Roster
+## What's In This Handbook
 
-| Role                | Internal Title  | Recommended Model   | Best Used For                                         |
-| :------------------ | :-------------- | :------------------ | :---------------------------------------------------- |
-| **Chief of Staff**  | `The Architect` | **Claude Opus 4.6** | Strategy, PRDs, System Design, "Adaptive Thinking"    |
-| **Lead Designer**   | `The Visionary` | **Moonchild AI**    | High-Fidelity UI, Glassmorphism, Figma Tokens         |
-| **Senior Eng**      | `The Builder`   | **GPT-5.3 Codex**   | Terminal execution, Refactoring, CI/CD                |
-| **Researcher**      | `The Librarian` | **Gemini 3 Pro**    | 2M+ Token Context, Legal Compliance, Log Analysis     |
-| **Intern(Offline)** | `The Runner`    | **Qwen 2.5 (14B)**  | Local (Offline) Unit tests, git messages, small fixes |
-| **Intern(Online)**  | `The Runner`    | **Claude Haiku**    | High-speed tasks via Copilot/API                      |
+| Section                          | Description                                                       | Who it's for                           |
+| -------------------------------- | ----------------------------------------------------------------- | -------------------------------------- |
+| [Handbook](handbook/README.md)   | Core philosophy, reusable skills, and handoff templates           | CTOs, technical leads, staff engineers |
+| [Agents](agents/README.md)       | Ten installable agent personas with clear roles and rules         | Developers, founders, AI operators     |
+| [Workflows](workflows/README.md) | Multi-agent orchestration guides for delivery and compliance      | Teams adopting structured AI workflows |
+| [Scripts](scripts/README.md)     | Shell automation for install, scaffolding, and GitBook validation | Maintainers, contributors, tool owners |
+| [Assets](assets/README.md)       | Migration notes and supporting design briefs                      | Design and documentation maintainers   |
 
-## Repository Structure
+## 2026 Staff Roster
 
-```
-config/
-  opencode.json          ← OpenCode provider & plugin config
-  oh-my-opencode.json    ← Agent-to-model orchestration map
-  ollama_modelfile       ← Local Qwen 2.5 Coder (offline intern)
-prompts/
-  01_system_architect.md ← The Architect (Claude Opus 4.6)
-  02_design_dna.md       ← The Visionary (Moonchild AI)
-  03_compliance_researcher.md ← The Librarian (Gemini 3 Pro)
-  04_intern_haiku.md     ← The Intern (Claude Haiku)
-  05_senior_builder.md   ← The Builder (GPT-5.3 Codex)
-workflows/
-  01_feature_handoff.md  ← Architect → Designer → Builder pipeline
-  02_legal_review_loop.md ← Librarian compliance scanning
-templates/
-  architecture_spec.md   ← ASD template (Architect output)
-  design_spec.md         ← DSD template (Designer output)
-  implementation_brief.md ← Brief template (Builder input)
+| Role             | Internal Title     | Recommended Model | Best Used For                                                     |
+| ---------------- | ------------------ | ----------------- | ----------------------------------------------------------------- |
+| Chief of Staff   | The Architect      | Claude Opus 4.6   | Strategy, PRDs, system design                                     |
+| Lead Designer    | The Visionary      | Google Stitch     | High-fidelity UI direction, design systems, prompt-driven layouts |
+| Senior Engineer  | The Builder        | GPT-5.3 Codex     | Implementation, refactoring, verification                         |
+| Researcher       | The Librarian      | Gemini 3 Pro      | Large-context analysis, legal compliance, deep scans              |
+| Intern (Offline) | The Offline Intern | Qwen 2.5 (14B)    | Local tests, commit messages, small fixes                         |
+| Intern (Online)  | The Intern         | Claude Haiku      | Fast scoped tasks through Copilot or API                          |
+
+## Quick Start
+
+```bash
+bash scripts/install-agent.sh --agent system-architect --target cursor
 ```
 
-## How to Use This Repo
+```bash
+bash scripts/install-all-agents.sh --target cursor
+```
 
-### Option A: Manual Specialist (Copy & Paste Prompts)
+```bash
+bash scripts/new-agent.sh --name "My Agent" --division "Engineering"
+```
 
-1. **Fork this repository.**
-2. **Copy the System Prompts** from `/prompts` into your AI tools (Claude Projects, OpenAI Custom GPTs, or Cursor Rules).
-3. **Adjust the `design_dna.md`** to match your personal brand aesthetic.
-4. **Run the `ollama_modelfile`** to set up your cost-saving local intern.
+## Deploy To GitBook
 
-### Option B: Automated Team (OpenCode + oh-my-opencode)
+1. Open GitBook and choose the GitHub import flow.
+2. Select this repository and keep the content root at `./`.
+3. GitBook will use `.gitbook.yaml`, `README.md`, and `SUMMARY.md` automatically.
 
-1. **Install OpenCode**: `curl -fsSL https://opencode.ai/install.sh | sh`
-2. **Install oh-my-opencode**: `bunx oh-my-opencode install`
-   - Select your providers (Claude, Copilot, Gemini, etc.)
-   - This sets up `~/.config/opencode/` with global auth and plugins
-3. **Copy the config files** into your project root:
-   ```bash
-   cp config/opencode.json ./opencode.json
-   cp config/oh-my-opencode.json ./oh-my-opencode.json
-   ```
-4. **Authenticate**: `opencode auth login` → select your provider
-5. **Run**: `opencode "your task here"`
+Run the validation step before publishing:
 
-> See [WORKFLOWS.md](WORKFLOWS.md) for detailed setup and usage of both approaches.
+```bash
+bash scripts/validate-links.sh
+```
 
-## The Core Philosophy
+## Contributing
 
-- **Architect First:** Never let the "Builder" (GPT) write code without a spec from the "Architect" (Claude).
-- **Context is King:** Use the "Librarian" (Gemini) for any task involving >100k tokens of documentation.
-- **Local for Speed:** Use the "Intern" (Local LLM) for loops that don't require high reasoning, saving API costs.
+Use `scripts/new-agent.sh` to scaffold a new agent page, then update any related handbook, workflow, or script references before opening a pull request. Full contribution guidance lives in [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Core Philosophy
+
+- Architect first. Do not let implementation agents invent system design under delivery pressure.
+- Context is leverage. Use the Librarian when the problem depends on large source material or precise policy review.
+- Match the task to the smallest capable agent. Save deeper reasoning for architecture, review, and compliance.

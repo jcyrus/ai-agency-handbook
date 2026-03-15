@@ -31,3 +31,14 @@ TABLE users ADD COLUMN ...
 - [ ] GDPR Impact?
 - [ ] AuthZ Level Required:
 - [ ] Input Validation Rules:
+
+## Quick Start
+
+**Automated (recommended):**
+
+```bash
+bash scripts/install-agent.sh --agent system-architect --target cursor
+```
+
+**Manual:**
+Fill in this template, then hand the completed document to [../../agents/system-architect.md](../../agents/system-architect.md) or use it as the output format for architecture review.
