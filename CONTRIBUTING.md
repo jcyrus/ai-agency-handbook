@@ -1,6 +1,6 @@
 # Contributing to AI Agency Handbook
 
-Thank you for your interest in contributing to the **AI Agency Handbook**! This repository provides system prompts, workflows, and playbooks for running a fractional CTO practice with AI-augmented specialist agents.
+Thank you for your interest in contributing to the **AI Agency Handbook**! This repository provides agent handbooks, workflows, and playbooks for running a fractional CTO practice with AI-augmented specialist agents.
 
 We welcome contributions from the community—whether you're adding new specialist agents, improving existing workflows, or sharing your own AI-assisted practices.
 
@@ -87,11 +87,11 @@ A Specialist Agent is an AI model configured with a specific system prompt to ha
 
 ### Current Specialist Agents
 
-The repository currently includes prompts for:
+The repository currently includes handbook pages for:
 
-- **System Architect** (Claude) - Architecture design and technical requirements
-- **Design DNA** (Moonchild) - UI/UX design and interaction patterns
-- **Compliance Researcher** (Gemini) - Legal and regulatory compliance
+- **The Architect** - Architecture design and technical requirements
+- **The Visionary** (Google Stitch) - UI/UX design and interaction patterns
+- **The Librarian** - Legal and regulatory compliance
 
 ### How to Add a New Specialist Agent
 
@@ -108,21 +108,21 @@ Determine what specialized role your agent will fulfill:
 - **Platform Engineer**: Developer experience, tooling, infrastructure
 - Other specialized roles relevant to technical leadership
 
-#### Step 2: Create the System Prompt File
+#### Step 2: Create the Agent File
 
-Create a new file in the `prompts/` directory:
+Use the scaffold script to create a new page in the `agents/` directory:
 
 ```bash
-touch prompts/[NN]_[specialty_name].md
+bash scripts/new-agent.sh --name "DevOps Engineer" --division "Engineering"
 ```
 
 **Naming Convention**:
 
-- Use sequential numbering (e.g., `04_`, `05_`, etc.)
-- Use lowercase with underscores
-- Be descriptive but concise
+- Filenames are generated in lowercase kebab-case
+- Keep the role name descriptive but concise
+- Update the generated frontmatter tags to improve discoverability in GitBook
 
-**Example**: `prompts/04_devops_engineer.md`
+**Example output**: `agents/devops-engineer.md`
 
 #### Step 3: Use the System Prompt Template
 
@@ -363,10 +363,10 @@ Fill in all sections with content specific to your specialty:
 
 #### Step 5: Add Configuration (if applicable)
 
-If your agent requires model-specific configuration (like Ollama), create a modelfile:
+If your agent requires model-specific configuration, add the related file under `scripts/config/`:
 
 ```bash
-touch config/ollama_[specialty]_modelfile
+touch scripts/config/ollama_[specialty]_modelfile
 ```
 
 Example content:
@@ -388,22 +388,22 @@ SYSTEM """
 If your specialist agent introduces a new workflow, create a workflow document:
 
 ```bash
-touch workflows/[NN]_[workflow_name].md
+touch workflows/[workflow-name].md
 ```
 
-Follow the structure of existing workflows (see `workflows/01_feature_handoff.md` for reference).
+Follow the structure of existing workflows (see `workflows/feature-handoff.md` for reference).
 
 #### Step 7: Update the README
 
-Add your new agent to the main README.md:
+Add your new agent to the main README.md and [agents/README.md](agents/README.md):
 
 ```markdown
-### Specialist Agents
+### Agents
 
-- **System Architect** (Claude) - [`prompts/01_system_architect.md`](prompts/01_system_architect.md)
-- **Design DNA** (Moonchild) - [`prompts/02_design_dna.md`](prompts/02_design_dna.md)
-- **Compliance Researcher** (Gemini) - [`prompts/03_compliance_researcher.md`](prompts/03_compliance_researcher.md)
-- **[Your Specialty]** ([Model]) - [`prompts/[NN]_[specialty].md`](prompts/[NN]_[specialty].md) ← NEW
+- **The Architect** - [`agents/system-architect.md`](agents/system-architect.md)
+- **The Visionary** - [`agents/design-visionary.md`](agents/design-visionary.md)
+- **The Librarian** - [`agents/compliance-researcher.md`](agents/compliance-researcher.md)
+- **[Your Specialty]** - [`agents/[your-specialty].md`](agents/[your-specialty].md) ← NEW
 ```
 
 #### Step 8: Submit Your Contribution
@@ -423,7 +423,7 @@ Follow the standard pull request process described above.
 - **Optimization**: Improving workflows based on practical experience
 - **Accessibility**: Making content more accessible and inclusive
 
-### How to Improve Existing Prompts
+### How to Improve Existing Agent Pages
 
 1. **Test the Prompt**: Use it in a real AI conversation
 2. **Document Issues**: Note what worked and what didn't

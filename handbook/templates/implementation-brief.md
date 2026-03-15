@@ -20,3 +20,14 @@
 - [ ] Types defined
 - [ ] Unit Tests passed
 - [ ] Accessibility (Tab index) verified
+
+## Quick Start
+
+**Automated (recommended):**
+
+```bash
+bash scripts/install-agent.sh --agent senior-builder --target cursor
+```
+
+**Manual:**
+Complete this brief and hand it to [../../agents/senior-builder.md](../../agents/senior-builder.md) as the implementation contract.
