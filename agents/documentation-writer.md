@@ -38,4 +38,4 @@ bash scripts/install-agent.sh --agent documentation-writer --target cursor
 ```
 
 **Manual:**
-Copy the contents of `/agents/documentation-writer.md` into your IDE's system prompt or rules file.
+Copy the contents of `agents/documentation-writer.md` into your IDE's system prompt or rules file.

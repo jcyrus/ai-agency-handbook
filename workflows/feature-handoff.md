@@ -15,11 +15,11 @@ Or grab the role pages directly: [Architect](../agents/system-architect.md) · [
 
 ## Pipeline Overview
 
-| Phase       | Agent     | Model         | Produces                                  |
-| ----------- | --------- | ------------- | ----------------------------------------- |
-| 1 — Analyze | Architect | Claude        | Architecture Specification Document (ASD) |
-| 2 — Design  | Designer  | Google Stitch | Design Specification Document (DSD)       |
-| 3 — Build   | Builder   | GPT           | Implementation + tests                    |
+| Phase       | Agent     | Produces                                  |
+| ----------- | --------- | ----------------------------------------- |
+| 1 — Analyze | Architect | Architecture Specification Document (ASD) |
+| 2 — Design  | Designer  | Design Specification Document (DSD)       |
+| 3 — Build   | Builder   | Implementation + tests                    |
 
 ---
 

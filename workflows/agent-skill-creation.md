@@ -66,6 +66,8 @@ Every skill must define these four sections:
 | **Context Injection** | Tech stack, domain knowledge, references, and quality gates      |
 | **Handoff Protocol**  | How the agent packages output for the next agent in the pipeline |
 
+> **Note:** The [skill template](../handbook/templates/skill-definition.md) also requires **Usage** and **Quick Start** sections. Fill those out to ensure your skill is discoverable and easy to apply.
+
 ### Step 2: Validate
 
 Before committing, verify:
@@ -131,15 +133,15 @@ Use this when running agents via `opencode` CLI with the `oh-my-opencode` orches
 
 **Step 2:** Create a skill-specific agent by appending the skill summary to `prompt_append`:
 
-```jsonc
+```json
 {
   "agents": {
     "hephaestus-tui": {
       "model": "github-copilot/gpt-5.3-codex",
       "variant": "medium",
-      "prompt_append": "You are The Builder (implementation mode). ACTIVE SKILL: Rust TUI Engineering. Enforce strict memory safety (no unsafe unless justified), zero-allocation render loops, Ratatui + Crossterm stack.",
-    },
-  },
+      "prompt_append": "You are The Builder (implementation mode). ACTIVE SKILL: Rust TUI Engineering. Enforce strict memory safety (no unsafe unless justified), zero-allocation render loops, Ratatui + Crossterm stack."
+    }
+  }
 }
 ```
 

@@ -12,9 +12,9 @@ Or copy the role page directly: [Compliance Researcher](../agents/compliance-res
 
 ## Overview
 
-| Agent         | Model  | Function                                                          |
-| ------------- | ------ | ----------------------------------------------------------------- |
-| **Librarian** | Gemini | Document analysis, compliance verification, policy interpretation |
+| Agent         | Function                                                          |
+| ------------- | ----------------------------------------------------------------- |
+| **Librarian** | Document analysis, compliance verification, policy interpretation |
 
 The Librarian cross-references code changes against your compliance corpus and produces a certification you attach to the PR for audit.
 
@@ -24,7 +24,7 @@ The Librarian cross-references code changes against your compliance corpus and p
 
 Organize compliance documentation in a structure like:
 
-```
+```text
 compliance-docs/
 ├── policies/          # data-privacy, security, accessibility, code-of-conduct
 ├── regulations/       # GDPR, HIPAA, SOX, industry-specific
@@ -50,7 +50,7 @@ Before requesting review, ensure development is complete, tests pass, and peer r
 
 ### 2. Upload to the Librarian
 
-Open a conversation with the **Librarian** (Gemini). Upload:
+Open a conversation with the **Librarian**. Upload:
 
 1. Modified source files (prioritize data-handling, auth, and integration code)
 2. Relevant compliance docs from your corpus

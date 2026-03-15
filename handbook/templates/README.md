@@ -11,10 +11,10 @@ Templates standardize the outputs that move between agents. They keep handoffs r
 
 ## How To Use Templates
 
-- Use the Architecture Specification to capture system design decisions before implementation.
-- Use the Design Specification to turn user flows and component behavior into a concrete UI brief.
-- Use the Implementation Brief to consolidate approved scope for the Builder.
-- Use the Skill Definition template when adding new domain expertise to the handbook.
+- **Architecture Specification** — capture system design decisions before implementation.
+- **Design Specification** — turn user flows and component behavior into a concrete UI brief.
+- **Implementation Brief** — consolidate approved scope for the Builder.
+- **Skill Definition** — add new domain expertise to the handbook.
 
 ## Quick Start
 

@@ -169,7 +169,7 @@ case "$TARGET" in
       fi
       printf '%s\n' "$BEGIN_MARKER"
       printf 'system_prompt: |\n'
-      cat "$AGENT_FILE" | indent_content
+      indent_content < "$AGENT_FILE"
       printf '%s\n' "$END_MARKER"
     } >> "$TARGET_FILE"
     success "Installed $AGENT_SLUG into .aider.conf.yml"

@@ -132,7 +132,10 @@ bash scripts/install-agent.sh --agent __SLUG__ --target cursor
 **Manual:**
 Copy the contents of `/agents/__SLUG__.md` into your IDE's system prompt or rules file.
 EOF
-sed -e "s/__NAME__/$NAME/g" -e "s/__DIVISION__/$DIVISION/g" -e "s/__SLUG__/$SLUG/g" "$TEMP_FILE" > "$TARGET_FILE"
+# Escape sed special characters in user input (& | \ can break substitution)
+ESCAPED_NAME=$(printf '%s' "$NAME" | sed 's/[&|\\]/\\&/g')
+ESCAPED_DIVISION=$(printf '%s' "$DIVISION" | sed 's/[&|\\]/\\&/g')
+sed -e "s|__NAME__|$ESCAPED_NAME|g" -e "s|__DIVISION__|$ESCAPED_DIVISION|g" -e "s|__SLUG__|$SLUG|g" "$TEMP_FILE" > "$TARGET_FILE"
 rm -f "$TEMP_FILE"
 
 success "Created agents/$SLUG.md"

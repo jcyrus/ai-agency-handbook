@@ -58,6 +58,8 @@ while [ "$#" -gt 0 ]; do
   esac
 done
 
+# chatgpt is excluded: install-agent.sh handles it by printing to stdout,
+# which does not work in batch mode.
 case "$TARGET" in
   cursor|claude|aider)
     ;;

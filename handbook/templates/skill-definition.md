@@ -142,7 +142,7 @@ Add the skill to an agent's `prompt_append` in `scripts/config/oh-my-opencode.js
 **Automated (recommended):**
 
 ```bash
-bash scripts/new-agent.sh --name "Domain Specialist" --division "Engineering"
+cp handbook/templates/skill-definition.md handbook/skills/your-skill-name.md
 ```
 
 **Manual:**
